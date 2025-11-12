@@ -10,7 +10,7 @@ You must have the Java Development Kit (JDK) installed on your computer to run t
 
 **1. Clone the Repository:**
 ```bash
-git clone git clone https://github.com/n-schroeder/java-blackjack-cli.git
+git clone https://github.com/n-schroeder/java-blackjack-cli.git
 ```
 
 **2. Navigate to the Directory:**
