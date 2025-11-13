@@ -41,13 +41,13 @@ public class BlackjackGame {
             boolean playerBlackjack = false;
             if (playerHand.calculateValue() == 21) {
                 if (dealerHand.calculateValue() == 21) {
-                    System.out.print("/nBoth you and the dealer have blackjack! ");
+                    System.out.print("Both you and the dealer have blackjack! ");
                     pause(500);
                     System.out.println("It's a push.");
                     playerBlackjack = true;
                 }
                 else {
-                    System.out.print("\nBlackjack!");
+                    System.out.print("Blackjack!");
                     pause(500);
                     System.out.println(" You win!");
                     playerBlackjack = true;
@@ -85,7 +85,7 @@ public class BlackjackGame {
                         playerTurn = false;
                         System.out.print("21!");
                         pause(500);
-                        System.out.println(" You stand.");
+                        System.out.println(" You stand.\n");
                     }
                     else {
                         System.out.println();
@@ -99,7 +99,7 @@ public class BlackjackGame {
                     playerTurn = false;
                 }
                 else {
-                    System.out.println("Invalid choice, please enter 'h' or 's'.");
+                    System.out.println("\nInvalid choice, please enter 'h' or 's'.\n");
                 }
             }
 
@@ -155,7 +155,11 @@ public class BlackjackGame {
             if (againChoice.equalsIgnoreCase("y")) {
                 playAgain = true;
             }
+            else if (againChoice.equalsIgnoreCase("n")) {
+                playAgain = false;
+            }
             else {
+                System.out.println("\nInvalid choice, exiting game.\n");
                 playAgain = false;
             }
         }
