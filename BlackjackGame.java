@@ -1,6 +1,14 @@
 import java.util.Scanner;
 
 public class BlackjackGame {
+
+    private static void pause(int milliseconds) {
+        try {
+            Thread.sleep(milliseconds);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
+    }
     public static void main(String[] args) {
         // play again while loop
         boolean playAgain = true;
@@ -22,18 +30,27 @@ public class BlackjackGame {
             dealerHand.addCard(deck.dealCard());
 
             // show hands
-            System.out.println("Dealer: [" + upCard + "] Value: " + upCard.getValue());
+            pause(500);
+            System.out.println("\nDealer: [" + upCard + "] Value: " + upCard.getValue());
+            pause(750);
             System.out.println(playerHand);
+            pause(750);
+            System.out.println();
 
             // check for player blackjack
+            boolean playerBlackjack = false;
             if (playerHand.calculateValue() == 21) {
                 if (dealerHand.calculateValue() == 21) {
-                    System.out.println("Both you and the dealer have blackjack! It's a push.");
-                    System.exit(0);
+                    System.out.print("/nBoth you and the dealer have blackjack! ");
+                    pause(500);
+                    System.out.println("It's a push.");
+                    playerBlackjack = true;
                 }
                 else {
-                    System.out.println("Blackjack! You win!");
-                    System.exit(0);
+                    System.out.print("\nBlackjack!");
+                    pause(500);
+                    System.out.println(" You win!");
+                    playerBlackjack = true;
                 }
             }
 
@@ -44,6 +61,7 @@ public class BlackjackGame {
             }
             // prompt player (hit or stand)
             boolean playerTurn = true;
+            boolean playerBust = false;
             while (playerTurn == true) {
                 System.out.println("Would you like to (h)it or (s)tand?");
                 System.out.print(">>> ");
@@ -52,21 +70,32 @@ public class BlackjackGame {
                     //hit
                     playerHand.addCard(deck.dealCard());
                     System.out.println("Dealer: [" + upCard + "] Value: " + upCard.getValue());
+                    pause(500);
                     System.out.println(playerHand);
                     // check for bust
                     if (playerHand.calculateValue() > 21) {
-                        System.out.println("Bust! You lose.");
-                        System.exit(0);
+                        System.out.print("\nBust!");
+                        pause(500);
+                        System.out.println(" You lose.");
+                        playerTurn = false;
+                        playerBust = true;
                     }
                     else if (playerHand.calculateValue() == 21) {
                         // end player turn
                         playerTurn = false;
-                        System.out.println("21! You stand.");
+                        System.out.print("21!");
+                        pause(500);
+                        System.out.println(" You stand.");
+                    }
+                    else {
+                        System.out.println();
+                        continue;
                     }
                 }
 
                 else if (playerChoice.equalsIgnoreCase("s")) {
                     //stand
+                    System.out.println();
                     playerTurn = false;
                 }
                 else {
@@ -75,27 +104,37 @@ public class BlackjackGame {
             }
 
             // dealer turn
-            if (playerTurn == false) {
+            if (playerTurn == false && playerBust != true && playerBlackjack != true) {
+                pause(500);
                 System.out.println("Dealer's turn...");
+                pause(1000);
                 System.out.println(dealerHand);
 
                 // check for dealer blackjack
                 if (dealerBlackjack == true) {
-                    System.out.println("Dealer has blackjack! You lose.");
+                    System.out.print("\nDealer has blackjack!");
+                    pause(500);
+                    System.out.println(" You lose.");
                     System.exit(0);
                 }
 
                 // dealer hit until 17+
                 while (dealerHand.calculateValue() < 17) {
                     dealerHand.addCard(deck.dealCard());
+                    pause(1000);
                     System.out.println("Dealer hits...");
+                    pause(1000);
                     System.out.println(dealerHand);
                 }
                 // determine winner
+                pause(1000);
+                System.out.println();
                 int playerTotal = playerHand.calculateValue();
                 int dealerTotal = dealerHand.calculateValue();
                 if (dealerTotal > 21) {
-                    System.out.println("Dealer busts! You win!");
+                    System.out.print("Dealer busts!");
+                    pause(500);
+                    System.out.println(" You win!");
                 }
                 else if (dealerTotal > playerTotal) {
                     System.out.println("Dealer wins with " + dealerTotal + " against your " + playerTotal + ".");
@@ -109,7 +148,8 @@ public class BlackjackGame {
             }
 
             // prompt to play again
-            System.out.println("Would you like to play again? (y/n)");
+            pause(1000);
+            System.out.println("\nWould you like to play again? (y/n)");
             System.out.print(">>> ");
             String againChoice = scnr.nextLine();
             if (againChoice.equalsIgnoreCase("y")) {
@@ -120,16 +160,9 @@ public class BlackjackGame {
             }
         }
 
+        scnr.close();
+       
 
-       
-       
-       
-       
-       
-       
-       
-       
-       
         // |TESTING::TESTING::TESTING|
         // Create some cards and display their values
         /*
