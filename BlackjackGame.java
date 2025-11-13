@@ -90,7 +90,6 @@ public class BlackjackGame {
                     dealerHand.addCard(deck.dealCard());
                     System.out.println("Dealer hits...");
                     System.out.println(dealerHand);
-                    }
                 }
                 // determine winner
                 int playerTotal = playerHand.calculateValue();
@@ -105,7 +104,7 @@ public class BlackjackGame {
                     System.out.println("You win with " + playerTotal + " against dealer's " + dealerTotal + "!");
                 }
                 else {
-                    System.out.println("It's a push at " + playerTotal + "and" + dealerTotal + "!");
+                    System.out.println("It's a push at " + playerTotal + "!");
                 }
             }
 
@@ -173,3 +172,4 @@ public class BlackjackGame {
         System.out.println(hand);
         */
     }
+}
