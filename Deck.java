@@ -11,7 +11,7 @@ public class Deck {
         // initialize the cards list
         this.cards = new ArrayList<>();
 
-        // for-each loop to populate ArrayList with 52 cards
+        // 'for-each' loop to populate ArrayList with 52 cards.
         // loop through suits...
         for (Suit suit : Suit.values()) {
             // ...and ranks...
