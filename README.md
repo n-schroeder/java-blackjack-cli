@@ -1,6 +1,31 @@
 # ♠️ Java Blackjack CLI
 
-> A simple command-line Blackjack game written in pure Java. This was created as a school project to practice Object-Oriented Programming (OOP) principles.
+> A clean, object-oriented Blackjack game built from scratch in Java.
+>
+> **Project Stats:** ~6 hour build | Pure Java | Zero Dependencies
+
+This project was built as a "fundamentals check" to practice core Object-Oriented Programming (OOP) principles before diving deeper into low-level systems programming.
+
+---
+
+## System Architecture
+
+I designed this project to be modular and extensible, moving away from "spaghetti code" in a single `main` method. The architecture relies on strict separation between data (Cards/Decks) and logic (Game/Hand).
+
+### Class Structure
+* **`Suit` & `Rank` (Enums)**
+  * Defines the immutable properties of a playing card.
+  * Used Enums to ensure type safety and prevent invalid card generation.
+* **`Card`**
+  * The fundamental unit of the game. Encapsulates a `Suit` and `Rank` and provides a readable `toString()` representation \("\[ACE of SPADES]").
+* **`Deck`**
+  * Manages the collection of 52 `Card` objects.
+  * Handles stateful actions like `shuffle()` (using `Collections.shuffle`) and `deal()`.
+* **`Hand`**
+  * Represents the player or dealer's current cards.
+  * **Key Logic:** Dynamic calculation of hand value, specifically handling the edge case where an Ace can be worth 1 or 11 depending on the total.
+* **`BlackjackGame`**
+  * Contains `main` method. Manages the game loop, user input, and win/loss conditions.
 
 ---
 
@@ -38,7 +63,13 @@ java BlackjackGame
 
 ---
 
-## Built With
+## Key Takeaways
 
-* **Java:** The core logic is built with pure Java.
-* **Git & GitHub:** For version control.
+* **Encapsulation:** Keeping internal state (like the cards in a deck) private and only exposing necessary methods (deal()).
+* **Enums vs Constants:** Using Java Enums for Suit and Rank creates much safer code than using integer constants (e.g., int HEARTS = 1).
+* **Algorithmic Logic:** Implementing the "Ace value" algorithm (11 unless total > 21 && aceCount >= 1, then 1) taught me about conditional state management.
+
+---
+
+## Game in Action (GIF)
+![A demo of the CLI Blackjack game in action](./images/blackjack-demo.gif)
