@@ -25,7 +25,7 @@ I designed this project to be modular and extensible, moving away from "spaghett
   * Represents the player or dealer's current cards.
   * **Key Logic:** Dynamic calculation of hand value, specifically handling the edge case where an Ace can be worth 1 or 11 depending on the total.
 * **`BlackjackGame`**
-  * Contains `main` method. Manages the game loop, user input, and win/loss conditions.
+  * Manages the game loop, user input, and win/loss conditions.
 
 ---
 
