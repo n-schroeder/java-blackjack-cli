@@ -4,7 +4,7 @@
 >
 > **Project Stats:** ~6 hour build | Pure Java | Zero Dependencies
 
-This project was built as a "fundamentals check" to practice core Object-Oriented Programming (OOP) principles before diving deeper into low-level systems programming.
+This project was built to practice core Object-Oriented Programming (OOP) principles and as a Barrett Honors Contract for my CSE 110 class.
 
 ---
 
