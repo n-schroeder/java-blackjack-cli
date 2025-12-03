@@ -93,7 +93,7 @@ public class BlackjackGame {
             // prompt player (hit or stand)
             boolean playerTurn = true;
             boolean playerBust = false;
-            while (playerTurn == true) {
+            while (playerTurn == true && playerBlackjack != true) {
                 System.out.println("Would you like to (h)it or (s)tand?");
                 System.out.print(">>> ");
                 String playerChoice = scnr.nextLine();
@@ -172,9 +172,11 @@ public class BlackjackGame {
                 }
                 else if (dealerTotal > playerTotal) {
                     System.out.println("Dealer wins with " + dealerTotal + " against your " + playerTotal + ".");
+                    bankroll -= currentBet;
                 }
                 else if (dealerTotal < playerTotal) {
                     System.out.println("You win with " + playerTotal + " against dealer's " + dealerTotal + "!");
+                    bankroll += currentBet;
                 }
                 else {
                     System.out.println("It's a push at " + playerTotal + "!");
