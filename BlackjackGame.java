@@ -108,6 +108,7 @@ public class BlackjackGame {
                         System.out.print("\nBust!");
                         pause(500);
                         System.out.println(" You lose.");
+                        bankroll -= currentBet;
                         playerTurn = false;
                         playerBust = true;
                     }
@@ -146,6 +147,7 @@ public class BlackjackGame {
                     System.out.print("\nDealer has blackjack!");
                     pause(500);
                     System.out.println(" You lose.");
+                    bankroll -= currentBet;
                     System.exit(0);
                 }
 
@@ -166,6 +168,7 @@ public class BlackjackGame {
                     System.out.print("Dealer busts!");
                     pause(500);
                     System.out.println(" You win!");
+                    bankroll += currentBet;
                 }
                 else if (dealerTotal > playerTotal) {
                     System.out.println("Dealer wins with " + dealerTotal + " against your " + playerTotal + ".");
