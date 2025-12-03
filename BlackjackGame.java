@@ -14,7 +14,37 @@ public class BlackjackGame {
         boolean playAgain = true;
         Scanner scnr = new Scanner(System.in);
 
+        int bankroll = 1000; // starting bankroll
+        System.out.println("Welcome! You have a starting bankroll of $" + bankroll);
+
         while (playAgain == true) {
+            // 1. Check for Game Over (Bankruptcy)
+            if (bankroll <= 0) {
+                System.out.println("You have run out of money! Game Over.");
+                break; // Ends the program
+            }
+            
+            // betting loop
+            int currentBet = 0;
+            while (true) {
+                System.out.println("\nYour current bankroll is $" + bankroll);
+                System.out.print("Enter your bet amount: $");
+                String betInput = scnr.nextLine();
+                try {
+                    currentBet = Integer.parseInt(betInput);
+                    if (currentBet > bankroll) {
+                        System.out.println("You cannot bet more than your current bankroll. Please enter a valid bet.");
+                    }
+                    else if (currentBet <= 0) {
+                        System.out.println("Bet amount must be greater than zero. Please enter a valid bet.");
+                    }
+                    else {
+                        break; // valid bet, exit loop
+                    }
+                } catch (NumberFormatException e) {
+                    System.out.println("Invalid input. Please enter a numeric value for your bet.");
+                }
+            }
             // game logic
             Deck deck = new Deck();
             deck.shuffle();
@@ -51,6 +81,7 @@ public class BlackjackGame {
                     pause(500);
                     System.out.println(" You win!");
                     playerBlackjack = true;
+                    bankroll += currentBet * 1.5;
                 }
             }
 
@@ -62,7 +93,7 @@ public class BlackjackGame {
             // prompt player (hit or stand)
             boolean playerTurn = true;
             boolean playerBust = false;
-            while (playerTurn == true) {
+            while (playerTurn == true && playerBlackjack != true) {
                 System.out.println("Would you like to (h)it or (s)tand?");
                 System.out.print(">>> ");
                 String playerChoice = scnr.nextLine();
@@ -77,6 +108,7 @@ public class BlackjackGame {
                         System.out.print("\nBust!");
                         pause(500);
                         System.out.println(" You lose.");
+                        bankroll -= currentBet;
                         playerTurn = false;
                         playerBust = true;
                     }
@@ -115,6 +147,7 @@ public class BlackjackGame {
                     System.out.print("\nDealer has blackjack!");
                     pause(500);
                     System.out.println(" You lose.");
+                    bankroll -= currentBet;
                     System.exit(0);
                 }
 
@@ -135,12 +168,15 @@ public class BlackjackGame {
                     System.out.print("Dealer busts!");
                     pause(500);
                     System.out.println(" You win!");
+                    bankroll += currentBet;
                 }
                 else if (dealerTotal > playerTotal) {
                     System.out.println("Dealer wins with " + dealerTotal + " against your " + playerTotal + ".");
+                    bankroll -= currentBet;
                 }
                 else if (dealerTotal < playerTotal) {
                     System.out.println("You win with " + playerTotal + " against dealer's " + dealerTotal + "!");
+                    bankroll += currentBet;
                 }
                 else {
                     System.out.println("It's a push at " + playerTotal + "!");
@@ -148,6 +184,8 @@ public class BlackjackGame {
             }
 
             // prompt to play again
+            pause(1000);
+            System.out.println("Current bankroll: $" + bankroll);
             pause(1000);
             System.out.println("\nWould you like to play again? (y/n)");
             System.out.print(">>> ");
