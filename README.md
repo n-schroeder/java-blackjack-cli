@@ -1,8 +1,6 @@
 # ♠️ Java Blackjack CLI
 
 > A clean, object-oriented Blackjack game built from scratch in Java.
->
-> **Project Stats:** ~6 hour build | Pure Java | Zero Dependencies
 
 This project was built to practice core Object-Oriented Programming (OOP) principles and as a Barrett Honors Contract for my CSE 110 class.
 
@@ -10,7 +8,7 @@ This project was built to practice core Object-Oriented Programming (OOP) princi
 
 ## System Architecture
 
-I designed this project to be modular and extensible, moving away from "spaghetti code" in a single `main` method. The architecture relies on strict separation between data (Cards/Decks) and logic (Game/Hand).
+The architecture relies on strict separation between data (Cards/Decks) and logic (Game/Hand).
 
 ### Class Structure
 * **`Suit` & `Rank` (Enums)**
@@ -60,6 +58,7 @@ java BlackjackGame
 * **Dealer Logic:** The dealer automatically hits until their hand value is 17 or higher.
 * **Ace Handling:** Aces are correctly valued at 1 or 11.
 * **Busts & Blackjacks:** The game automatically detects bust, win, and "Push" (tie) conditions.
+* **Betting & Bankroll Dynamics:** Bankroll accurately updates based on bet size and game result. Play-loop ends when Bankroll reaches $0.
 
 ---
 
