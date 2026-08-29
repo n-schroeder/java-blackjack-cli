@@ -1,4 +1,4 @@
-# ♠️ Java Blackjack CLI
+# Java Blackjack CLI
 
 > A clean, object-oriented Blackjack game built from scratch in Java.
 
